@@ -136,7 +136,17 @@ flatpak install flathub org.gnome.World.PikaBackup -y
 flatpak install flathub org.upscayl.app -y
 flatpak install flathub org.zotero.Zotero -y
 flatpak install flathub com.librumreader.librum -y
-
+flatpak install flathub org.gnome.DejaDup -y
+flatpak install flathub net.cozic.joplin_desktop -y
+flatpak install flathub me.hyliu.fluentreader -y
+flatpak install flathub md.obsidian.Obsidian -y
+flatpak install flathub io.gitlab.news_flash.NewsFlash -y
+flatpak install flathub com.vixalien.sticky -y
+flatpak install flathub com.logseq.Logseq -y
+flatpak install flathub com.elsevier.MendeleyDesktop -y
+flatpak install flathub com.bitwarden.desktop -y
+flatpak install flathub com.authy.Authy -y
+flatpak install flathub com.anydesk.Anydesk -y
 
 }
 
