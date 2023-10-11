@@ -46,10 +46,10 @@ fi
 
 
 ## Removendo travas eventuais do apt ##
-travas_apt(){
-  sudo rm /var/lib/dpkg/lock-frontend
-  sudo rm /var/cache/apt/archives/lock
-}
+#travas_apt(){
+  #sudo rm /var/lib/dpkg/lock-frontend
+  #sudo rm /var/cache/apt/archives/lock
+#}
 
 ## Adicionando/Confirmando arquitetura de 32 bits ##
 add_archi386(){
@@ -133,7 +133,6 @@ flatpak install flathub io.missioncenter.MissionCenter -y
 flatpak install flathub io.unobserved.espansoGUI -y
 flatpak install flathub nz.mega.MEGAsync -y
 flatpak install flathub org.gnome.World.PikaBackup -y
-flatpak install flathub org.upscayl.app -y
 flatpak install flathub org.zotero.Zotero -y
 flatpak install flathub com.librumreader.librum -y
 flatpak install flathub org.gnome.DejaDup -y
@@ -147,6 +146,7 @@ flatpak install flathub com.elsevier.MendeleyDesktop -y
 flatpak install flathub com.bitwarden.desktop -y
 flatpak install flathub com.authy.Authy -y
 flatpak install flathub com.anydesk.Anydesk -y
+flatpak install flathub org.upscayl.Upscayl -y
 
 }
 
@@ -194,11 +194,11 @@ echo "file:///home/$USER/TEMP 🕖 TEMP" >> $FILE
 # -------------------------------------------------------------------------------- #
 # -------------------------------EXECUÇÃO----------------------------------------- #
 
-travas_apt
+#travas_apt
 testes_internet
-travas_apt
+#travas_apt
 apt_update
-travas_apt
+#travas_apt
 add_archi386
 just_apt_update
 install_debs
