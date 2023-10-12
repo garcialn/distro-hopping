@@ -147,6 +147,7 @@ flatpak install flathub com.bitwarden.desktop -y
 flatpak install flathub com.authy.Authy -y
 flatpak install flathub com.anydesk.Anydesk -y
 flatpak install flathub org.upscayl.Upscayl -y
+flatpak install flathub md.obsidian.Obsidian -y
 
 }
 
