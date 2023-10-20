@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-##URLS
-
-URL_GOOGLE_CHROME="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-
 
 
 
@@ -45,11 +41,16 @@ fi
 # ------------------------------------------------------------------------------ #
 
 
-## Removendo travas eventuais do apt ##
-#travas_apt(){
-  #sudo rm /var/lib/dpkg/lock-frontend
-  #sudo rm /var/cache/apt/archives/lock
-#}
+## Removendo travas eventuais do apt
+travas_apt() {
+  while sudo fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do
+    echo -e "${VERMELHO}[AVISO] - Outro processo está usando apt. Aguardando..."${SEM_COR}
+    sleep 1
+  done
+  sudo rm -f /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock
+}
+
+
 
 ## Adicionando/Confirmando arquitetura de 32 bits ##
 add_archi386(){
@@ -70,14 +71,15 @@ PROGRAMAS_PARA_INSTALAR=(
   gufw
   synaptic
   code
-  gnome-sushi 
+  gnome-sushi
   folder-color
   git
   thunderbird
   gimp
   wget
   ubuntu-restricted-extras
- 
+  gparted
+
 )
 
 # ---------------------------------------------------------------------- #
@@ -89,12 +91,7 @@ install_debs(){
 echo -e "${VERDE}[INFO] - Baixando pacotes .deb${SEM_COR}"
 
 mkdir "$DIRETORIO_DOWNLOADS"
-wget -c "$URL_GOOGLE_CHROME"       -P "$DIRETORIO_DOWNLOADS"
 
-
-## Instalando pacotes .deb baixados na sessão anterior ##
-echo -e "${VERDE}[INFO] - Instalando pacotes .deb baixados${SEM_COR}"
-sudo dpkg -i $DIRETORIO_DOWNLOADS/*.deb
 
 # Instalar programas no apt
 echo -e "${VERDE}[INFO] - Instalando pacotes apt do repositório${SEM_COR}"
@@ -114,6 +111,7 @@ install_flatpaks(){
   echo -e "${VERDE}[INFO] - Instalando pacotes flatpak${SEM_COR}"
 
 flatpak install flathub com.obsproject.Studio -y
+flatpak install flathub com.visualstudio.code -y
 flatpak install flathub com.spotify.Client -y
 flatpak install flathub org.freedesktop.Piper -y
 flatpak install flathub org.gnome.Boxes -y
@@ -195,11 +193,11 @@ echo "file:///home/$USER/TEMP 🕖 TEMP" >> $FILE
 # -------------------------------------------------------------------------------- #
 # -------------------------------EXECUÇÃO----------------------------------------- #
 
-#travas_apt
+travas_apt
 testes_internet
-#travas_apt
+travas_apt
 apt_update
-#travas_apt
+travas_apt
 add_archi386
 just_apt_update
 install_debs
