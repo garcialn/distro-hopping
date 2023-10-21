@@ -149,6 +149,19 @@ flatpak install flathub md.obsidian.Obsidian -y
 
 }
 
+## Instalar Espanso
+install_espanso(){
+  
+  echo -e "${VERDE}[INFO] - Instalando Espanso e registrando o serviço${SEM_COR}"
+
+wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
+sudo apt install ./espanso-debian-x11-amd64.deb
+espanso service register
+
+# Start espanso
+espanso start
+}
+
 
 # -------------------------------------------------------------------------- #
 # ----------------------------- PÓS-INSTALAÇÃO ----------------------------- #
@@ -189,6 +202,8 @@ fi
 echo "file:///home/$USER/AppImage" >> $FILE
 echo "file:///home/$USER/TEMP 🕖 TEMP" >> $FILE
 }
+
+# 
 
 # -------------------------------------------------------------------------------- #
 # -------------------------------EXECUÇÃO----------------------------------------- #
