@@ -28,40 +28,9 @@ Master PDF Editor	net.codeindustry.MasterPDFEditor	5.9.70	stable	user
 Joplin	net.cozic.joplin_desktop	2.12.19	stable	user
 MEGAsync	nz.mega.MEGAsync	4.10.0.0	stable	user
 Piper	org.freedesktop.Piper	0.7	stable	user
-Freedesktop Platform	org.freedesktop.Platform	21.08.22	21.08	user
-Freedesktop Platform	org.freedesktop.Platform	22.08.19	22.08	user
-Freedesktop Platform	org.freedesktop.Platform	23.08.6	23.08	user
-i386	org.freedesktop.Platform.Compat.i386		22.08	user
-Mesa	org.freedesktop.Platform.GL.default	21.3.9	21.08	user
-Mesa	org.freedesktop.Platform.GL.default	23.1.9	22.08	user
-Mesa (Extra)	org.freedesktop.Platform.GL.default	23.1.9	22.08-extra	user
-Mesa	org.freedesktop.Platform.GL.default	23.2.1	23.08	user
-Mesa (Extra)	org.freedesktop.Platform.GL.default	23.2.1	23.08-extra	user
-Mesa	org.freedesktop.Platform.GL32.default	23.1.9	22.08	user
-Intel	org.freedesktop.Platform.VAAPI.Intel		21.08	user
-Intel	org.freedesktop.Platform.VAAPI.Intel		22.08	user
-Intel	org.freedesktop.Platform.VAAPI.Intel		23.08	user
-openh264	org.freedesktop.Platform.openh264	2.1.0	2.0	user
-openh264	org.freedesktop.Platform.openh264	2.1.0	2.2.0	user
-Freedesktop SDK	org.freedesktop.Sdk	22.08.19	22.08	user
-Caixas	org.gnome.Boxes	45.0	stable	user
 GNOME Boxes Osinfo DB	org.gnome.Boxes.Extension.OsinfoDb	20231027	stable	user
 Déjà Dup Backups	org.gnome.DejaDup	45.1	stable	user
-GNOME Application Platform version 44	org.gnome.Platform		44	user
-GNOME Application Platform version 45	org.gnome.Platform		45	user
 Ochotona Backup	org.gnome.World.PikaBackup	0.6.2	stable	user
-KDE Application Platform	org.kde.Platform		5.15-21.08	user
-KDE Application Platform	org.kde.Platform		5.15-22.08	user
-KDE Application Platform	org.kde.Platform		6.5	user
-QGnomePlatform	org.kde.PlatformTheme.QGnomePlatform		5.15-21.08	user
-QGnomePlatform	org.kde.PlatformTheme.QGnomePlatform		5.15-22.08	user
-QGnomePlatform	org.kde.PlatformTheme.QGnomePlatform		6.5	user
-QtSNI	org.kde.PlatformTheme.QtSNI		5.15-21.08	user
-QAdwaitaDecorations	org.kde.WaylandDecoration.QAdwaitaDecorations		5.15-22.08	user
-QAdwaitaDecorations	org.kde.WaylandDecoration.QAdwaitaDecorations		6.5	user
-QGnomePlatform-decoration	org.kde.WaylandDecoration.QGnomePlatform-decoration		5.15-21.08	user
-QGnomePlatform-decoration	org.kde.WaylandDecoration.QGnomePlatform-decoration		5.15-22.08	user
-QGnomePlatform-decoration	org.kde.WaylandDecoration.QGnomePlatform-decoration		6.5	user
 ONLYOFFICE Desktop Editors	org.onlyoffice.desktopeditors	7.5.0	stable	user
 Upscayl	org.upscayl.Upscayl	v2.9.1	stable	user
 Zotero	org.zotero.Zotero	6.0.30	stable	user
