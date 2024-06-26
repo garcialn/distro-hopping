@@ -4,55 +4,53 @@ set -e
 
 
 
-##DIRETÓRIOS E ARQUIVOS
+# -------------- Files and Directories ------------------ #
 
-DIRETORIO_DOWNLOADS="$HOME/Downloads/programas"
+DOWNLOAD_DIR="$HOME/Downloads/programas"
 FILE="/home/$USER/.config/gtk-3.0/bookmarks"
 
 
-#CORES
+# ------ Colors ------- #
 
-VERMELHO='\e[1;91m'
-VERDE='\e[1;92m'
-SEM_COR='\e[0m'
+RED='\e[1;91m'
+GREEN='\e[1;92m'
+NO_COLOR='\e[0m'
 
 
-#FUNÇÕES
-
-# Atualizando repositório e fazendo atualização do sistema
+# ------------------- Functions -------------------- #
 
 apt_update(){
   sudo apt update && sudo apt dist-upgrade -y
 }
 
-# -------------------------------------------------------------------------------- #
-# -------------------------------TESTES E REQUISITOS----------------------------------------- #
+# ___________________ Reqs and Tests _______________ #
 
-# Internet conectando?
-testes_internet(){
+# Internet connection
+connection_test(){
 if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
-  echo -e "${VERMELHO}[ERROR] - Seu computador não tem conexão com a Internet. Verifique a rede.${SEM_COR}"
+  echo -e "${RED}[ERROR] - No internet connection$
+  NO_COLOR}"
   exit 1
 else
-  echo -e "${VERDE}[INFO] - Conexão com a Internet funcionando normalmente.${SEM_COR}"
+  echo -e "${GREEN}[INFO] - Good internet connection$
+  NO_COLOR}"
 fi
 }
 
 # ------------------------------------------------------------------------------ #
 
 
-## Removendo travas eventuais do apt
-travas_apt() {
+# Removing apt locks
+apt_lock() {
   while sudo fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do
-    echo -e "${VERMELHO}[AVISO] - Outro processo está usando apt. Aguardando..."${SEM_COR}
+    echo -e "${RED}[AVISO] - Other process using apt. On hold..."$
+    NO_COLOR}
     sleep 1
   done
   sudo rm -f /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock
 }
 
-
-
-## Adicionando/Confirmando arquitetura de 32 bits ##
+# Adding 32bits arch
 add_archi386(){
 sudo dpkg --add-architecture i386
 }
@@ -61,9 +59,9 @@ just_apt_update(){
 sudo apt update -y
 }
 
-##DEB SOFTWARES TO INSTALL
+# ---------------- Deb apps to install ----------------- #
 
-PROGRAMAS_PARA_INSTALAR=(
+DEBS_INSTALL=(
   snapd
   winff
   virtualbox
@@ -82,33 +80,30 @@ PROGRAMAS_PARA_INSTALAR=(
 
 )
 
-# ---------------------------------------------------------------------- #
-
-## Download e instalaçao de programas externos ##
+# Download and install Deb apps
 
 install_debs(){
 
-echo -e "${VERDE}[INFO] - Baixando pacotes .deb${SEM_COR}"
+echo -e "${GREEN}[INFO] - Downloading .debs${NO_COLOR}"
 
-mkdir "$DIRETORIO_DOWNLOADS"
+mkdir "$DOWNLOAD_DIR"
 
+# Install apt apps
+echo -e "${GREEN}[INFO] - Instalando pacotes apt do repositório${NO_COLOR}"
 
-# Instalar programas no apt
-echo -e "${VERDE}[INFO] - Instalando pacotes apt do repositório${SEM_COR}"
-
-for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; do
-  if ! dpkg -l | grep -q $nome_do_programa; then # Só instala se já não estiver instalado
-    sudo apt install "$nome_do_programa" -y
+for app_name in ${DEBS_INSTALL[@]}; do
+  if ! dpkg -l | grep -q $app_name; then # Only install if not installed
+    sudo apt install "$app_name" -y
   else
-    echo "[INSTALADO] - $nome_do_programa"
+    echo "[INSTALADO] - $app_name"
   fi
 done
 
 }
-## Instalando pacotes Flatpak ##
+# Installing Flatpaks
 install_flatpaks(){
 
-  echo -e "${VERDE}[INFO] - Instalando pacotes flatpak${SEM_COR}"
+  echo -e "${GREEN}[INFO] - Installing Flatpaks${NO_COLOR}"
 
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.visualstudio.code -y
@@ -149,10 +144,10 @@ flatpak install flathub md.obsidian.Obsidian -y
 
 }
 
-## Instalar Espanso
+# Installing Espanso
 install_espanso(){
   
-  echo -e "${VERDE}[INFO] - Instalando Espanso e registrando o serviço${SEM_COR}"
+  echo -e "${GREEN}[INFO] - Installing Espanso and setting services${NO_COLOR}"
 
 wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
 sudo apt install ./espanso-debian-x11-amd64.deb
@@ -162,12 +157,9 @@ espanso service register
 espanso start
 }
 
+# ----------------------------- Post Install ----------------------------- #
 
-# -------------------------------------------------------------------------- #
-# ----------------------------- PÓS-INSTALAÇÃO ----------------------------- #
-
-
-## Finalização, atualização e limpeza##
+# Clean and updates
 
 system_clean(){
 
@@ -178,13 +170,10 @@ sudo apt autoremove -y
 nautilus -q
 }
 
+# ----------------------------- Extra Configs ----------------------------- #
 
-# -------------------------------------------------------------------------- #
-# ----------------------------- CONFIGS EXTRAS ----------------------------- #
-
-#Cria pastas para produtividade no nautilus
+# Productivity folders on Nautilus
 extra_config(){
-
 
 mkdir /home/$USER/TEMP
 mkdir /home/$USER/AppImage
@@ -193,9 +182,9 @@ mkdir /home/$USER/Vídeos/'OBS Rec'
 #Adiciona atalhos ao Nautilus
 
 if test -f "$FILE"; then
-    echo "$FILE já existe"
+    echo "$FILE already exist"
 else
-    echo "$FILE não existe, criando..."
+    echo "$FILE creating..."
     touch /home/$USER/.config/gkt-3.0/bookmarks
 fi
 
@@ -203,16 +192,13 @@ echo "file:///home/$USER/AppImage" >> $FILE
 echo "file:///home/$USER/TEMP 🕖 TEMP" >> $FILE
 }
 
-# 
+# ----------------- Executions ------------------ #
 
-# -------------------------------------------------------------------------------- #
-# -------------------------------EXECUÇÃO----------------------------------------- #
-
-travas_apt
-testes_internet
-travas_apt
+apt_lock
+connection_test
+apt_lock
 apt_update
-travas_apt
+apt_lock
 add_archi386
 just_apt_update
 install_debs
@@ -221,6 +207,6 @@ extra_config
 apt_update
 system_clean
 
-## finalização
+# Finishing
 
-  echo -e "${VERDE}[INFO] - Script finalizado, instalação concluída! :)${SEM_COR}"
+echo -e "${GREEN}[INFO] - Script finalizado, instalação concluída! :)${NO_COLOR}"
