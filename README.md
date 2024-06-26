@@ -1,15 +1,12 @@
 # Distro Hopping
-Repositório para script de instalação de programas Linux.
+A script for hopping linux distros installing flatpaks and packages.
 
-## Used on
-- ZorinOS -> PopOS
-
-## Obs
-Para o correto funcionamento do script (com PopOS), deve-se rodar o seguinte código no terminal:
+## Usage with PopOS
+Run the following code:
 ```szh
 sudo systemctl stop packagekit
 ```
-Após o término das instalações, rode:
+After the installation run:
 ```szh
 sudo systemctl start packagekit
 ```
