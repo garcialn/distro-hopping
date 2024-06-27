@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-
-
-
 # -------------- Files and Directories ------------------ #
 
 DOWNLOAD_DIR="$HOME/Downloads/programas"
@@ -23,6 +20,7 @@ apt_update(){
   sudo apt update && sudo apt dist-upgrade -y
 }
 
+
 # ___________________ Reqs and Tests _______________ #
 
 # Internet connection
@@ -37,8 +35,8 @@ else
 fi
 }
 
-# ------------------------------------------------------------------------------ #
 
+# ------------------------------------------------------------------------------ #
 
 # Removing apt locks
 apt_lock() {
@@ -58,6 +56,7 @@ sudo dpkg --add-architecture i386
 just_apt_update(){
 sudo apt update -y
 }
+
 
 # ---------------- Deb apps to install ----------------- #
 
