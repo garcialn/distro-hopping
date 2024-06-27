@@ -52,7 +52,7 @@ apt_lock() {
 add_archi386(){
 sudo dpkg --add-architecture i386
 }
-## Atualizando o repositório ##
+# Updating repo
 just_apt_update(){
 sudo apt update -y
 }
@@ -80,7 +80,6 @@ DEBS_INSTALL=(
 )
 
 # Download and install Deb apps
-
 install_debs(){
 
 echo -e "${GREEN}[INFO] - Downloading .debs${NO_COLOR}"
@@ -156,10 +155,10 @@ espanso service register
 espanso start
 }
 
+
 # ----------------------------- Post Install ----------------------------- #
 
 # Clean and updates
-
 system_clean(){
 
 apt_update -y
@@ -168,6 +167,7 @@ sudo apt autoclean -y
 sudo apt autoremove -y
 nautilus -q
 }
+
 
 # ----------------------------- Extra Configs ----------------------------- #
 
@@ -178,8 +178,7 @@ mkdir /home/$USER/TEMP
 mkdir /home/$USER/AppImage
 mkdir /home/$USER/Vídeos/'OBS Rec'
 
-#Adiciona atalhos ao Nautilus
-
+# Shortcuts to Nautilus
 if test -f "$FILE"; then
     echo "$FILE already exist"
 else
@@ -190,6 +189,7 @@ fi
 echo "file:///home/$USER/AppImage" >> $FILE
 echo "file:///home/$USER/TEMP 🕖 TEMP" >> $FILE
 }
+
 
 # ----------------- Executions ------------------ #
 
@@ -207,5 +207,4 @@ apt_update
 system_clean
 
 # Finishing
-
 echo -e "${GREEN}[INFO] - Script finalizado, instalação concluída! :)${NO_COLOR}"
