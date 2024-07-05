@@ -57,8 +57,26 @@ just_apt_update(){
 sudo apt update -y
 }
 
+# TODO: Update with snippet to install Gnome Extensions
 
 # ---------------- Deb apps to install ----------------- #
+
+# TODO: Update list of apps with:
+# - Zathura PDF Reader
+# - Zoxide
+# - lsd
+# - nala
+# - search and replace
+# - ZSH
+# - Starship
+# - Wezterm
+# - Nvim
+# - Zellij
+# - Tmux
+# - DVC
+# - Espanso
+# - Zinit
+# - GNU Stow
 
 DEBS_INSTALL=(
   snapd
