@@ -62,7 +62,6 @@ sudo apt update -y
 # ---------------- Deb apps to install ----------------- #
 
 # TODO: Update list of apps with:
-# - Zathura PDF Reader
 # - Zoxide
 # - lsd
 # - nala
@@ -77,6 +76,7 @@ sudo apt update -y
 # - Espanso
 # - Zinit
 # - GNU Stow
+# - Kedro
 
 DEBS_INSTALL=(
   snapd
@@ -159,10 +159,12 @@ flatpak install flathub org.upscayl.Upscayl -y
 flatpak install flathub md.obsidian.Obsidian -y
 
 }
+#TEST: entire session still to be tested
+# ------------------- INSTALLATION SCRIPTS ----------------------------- #
 
-# Installing Espanso
+# INFO:: ESPANSO
 install_espanso(){
-  
+
   echo -e "${GREEN}[INFO] - Installing Espanso and setting services${NO_COLOR}"
 
 wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
@@ -173,7 +175,13 @@ espanso service register
 espanso start
 }
 
+# INFO: ATUIN
+install_atuin(){
+  echo -e "${GREEN}[INFO] - Installing Atuin${NO_COLOR}"
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+}
 
+# INFO: 
 # ----------------------------- Post Install ----------------------------- #
 
 # Clean and updates
